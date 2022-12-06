@@ -1,3 +1,4 @@
+const fs = require("fs");
 const express = require("express");
 const app = express();
 
@@ -11,6 +12,14 @@ app.get("/", (req, res) => {
 
 app.get("/status", (req, res) => {
   res.send("200");
+});
+
+app.get("/img/character.png", (req, res) => {
+  fs.readFile("./views/img/character.png", (err, data) => {
+    res.writeHead(200);
+    res.write(data);
+    res.end();
+  });
 });
 
 const port = 3000;
